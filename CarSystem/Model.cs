@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarSystem
 {
-    internal class Model
+    public class Model
     {
         static int counter = 0;
 
@@ -21,7 +21,7 @@ namespace CarSystem
 
         public override string ToString()
         {
-            return $"{Id}. {Name} (ModelId{ModelId})";
+            return $"{Id}. {Name} (ModelIdı: {ModelId})";
         }
     }
 }

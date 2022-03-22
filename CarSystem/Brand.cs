@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarSystem
 {
-    internal class Brand
+   public class Brand
     {
         static int counter = 0;
 

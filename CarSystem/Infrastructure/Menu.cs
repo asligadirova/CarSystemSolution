@@ -14,7 +14,7 @@ namespace CarSystem.Infrastructure
         CarEdit,
         CarRemove,
         CarSingle,
-        CarAll,
+        CarsAll,
 
 
         BrandAdd,
