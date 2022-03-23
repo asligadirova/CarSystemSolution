@@ -20,7 +20,7 @@ namespace CarSystem
         public string Color { get; set; }
         public double Price { get; set; }
         public double Engine { get; set; }
-        public DateTime Year { get; set; }
+        public int Year { get; set; }
         
         public enum FuelType 
         {
