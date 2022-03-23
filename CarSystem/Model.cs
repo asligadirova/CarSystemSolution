@@ -8,11 +8,11 @@ namespace CarSystem
 {
     public class Model
     {
-        static int counter = 0;
+        static int counter ;
 
         public Model()
         {
-            this.Id = ++counter;
+            this.Id =++ counter;
         }
         public int Id { get; private set; }
         public int ModelId { get; set; }
@@ -21,7 +21,7 @@ namespace CarSystem
 
         public override string ToString()
         {
-            return $"{Id}. {Name} (ModelIdı: {ModelId})";
+            return $"{Id}. {Name} (ModelId: {ModelId})";
         }
     }
 }

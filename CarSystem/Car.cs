@@ -8,7 +8,7 @@ namespace CarSystem
 {
     public class Car
     {
-        static int counter = 0;
+        static int counter = 1;
 
         public Car()
         {
@@ -31,7 +31,7 @@ namespace CarSystem
 
         public override string ToString()
         {
-            return $"{Id}. {Color} {Price} {Engine}  {Year:yyyy} ModelId:{ModelId}";
+            return $"{Id}. {Color} {Price} {Engine}  {Year} ModelId:{ModelId}";
         }
 
     }

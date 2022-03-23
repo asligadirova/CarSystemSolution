@@ -84,7 +84,7 @@ namespace CarSystem
                     ShowAllCars(carMgr);
                     Console.WriteLine("------------");
 
-                    //b.Id = ScanerManager.ReadInteger("Telebenin Grupu: ");
+                   // b.Id = ScanerManager.ReadInteger("Telebenin Grupu: ");
 
                     brandMgr.Add(b);
                     goto case Menu.BrandsAll;
