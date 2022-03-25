@@ -37,7 +37,31 @@ namespace CarSystem
                     goto case Menu.CarsAll;
                    
                 case Menu.CarEdit:
-                    break;
+
+                   
+                    
+                        int id1 = ScanerManager.ReadInteger("Redaktə etmək istədiyiniz maşının İD-ni daxil edin: ");
+                        Car carForEdit = carMgr.GetAll().FirstOrDefault(g => g.Id == id1);
+                        carForEdit.Color = ScanerManager.ReadString("Maşının rəngini dəyiş:  ");
+                        carForEdit.Year= ScanerManager.ReadInteger("Maşının ilini dəyiş:  ");
+                        carForEdit.Price = ScanerManager.ReadDouble("Maşının qiymətini dəyiş:  ");
+                        carForEdit.Engine = ScanerManager.ReadDouble("Maşının mühərrikini dəyiş:  ");
+.
+
+                    //pMgr.Edit(productForEdit);
+
+                    //foreach (var item in pMgr)
+                    //{
+                    //    Console.WriteLine(item);
+                    //}
+                    carMgr.Edit(carForEdit);
+
+                    foreach (var item in carMgr.GetAll())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    goto case Menu.CarsAll;
+
                 case Menu.CarRemove:
 
                     Console.Clear();

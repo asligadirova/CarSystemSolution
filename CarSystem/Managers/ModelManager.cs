@@ -33,6 +33,14 @@ namespace CarSystem.Managers
                 Array.Resize(ref data, data.Length - 1);
             //data[len] = entity;
         }
+        public void Edit(Model entity)
+        {
+            int index = Array.IndexOf(data, entity);
+            if (index == -1)
+                return;
+
+            data[index] = entity;
+        }
         public Model[] GetAll()
         {
             return data;
