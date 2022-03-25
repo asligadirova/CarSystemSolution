@@ -8,8 +8,7 @@ namespace CarSystem
 {
    public class Brand
     {
-        static int counter = 0;
-
+        static int counter;
         public Brand()
         {
             this.Id = ++counter;
@@ -21,7 +20,7 @@ namespace CarSystem
 
         public override string ToString()
         {
-            return $"{Id}. {Name} ";
+            return $"{Id}. Marka: {Name} ";
         }
     }
 }

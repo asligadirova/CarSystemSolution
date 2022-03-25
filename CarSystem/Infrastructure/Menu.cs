@@ -7,28 +7,26 @@ using System.Threading.Tasks;
 namespace CarSystem.Infrastructure
 {
     public enum Menu : byte
-    {  
+    {
 
 
-        CarAdd = 1,
-        CarEdit,
-        CarRemove,
-        CarSingle,
-        CarsAll,
-
-
-        BrandAdd,
+        BrandAdd = 1,
         BrandEdit,
         BrandRemove,
         BrandSingle,
         BrandsAll,
-
 
         ModelAdd,
         ModelEdit,
         ModelRemove,
         ModelSingle,
         ModelsAll,
+
+        CarAdd,
+        CarEdit,
+        CarRemove,
+        CarSingle,
+        CarsAll,
         All,
         Exit
     }

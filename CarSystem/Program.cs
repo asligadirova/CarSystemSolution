@@ -32,13 +32,15 @@ namespace CarSystem
                     c.Year = ScanerManager.ReadInteger("Maşının ilini daxil edin: ");
                     c.Engine = ScanerManager.ReadDouble("Maşının mühərrikini daxil edin: ");
                     c.Price = ScanerManager.ReadDouble("Maşının qiymətini daxil edin: ");
+                    Console.WriteLine("------");
+                    ShowAllBrands(brandMgr);
+                    Console.WriteLine("------");
+                    c.ModelId = ScanerManager.ReadInteger("Marka ID-ni daxil edin:  ");
                     carMgr.Add(c);
 
                     goto case Menu.CarsAll;
                    
-                case Menu.CarEdit:
-
-                   
+                case Menu.CarEdit:                   
                     
                         int id1 = ScanerManager.ReadInteger("Redaktə etmək istədiyiniz maşının İD-ni daxil edin: ");
                         Car carForEdit = carMgr.GetAll().FirstOrDefault(g => g.Id == id1);
@@ -46,14 +48,7 @@ namespace CarSystem
                         carForEdit.Year= ScanerManager.ReadInteger("Maşının ilini dəyiş:  ");
                         carForEdit.Price = ScanerManager.ReadDouble("Maşının qiymətini dəyiş:  ");
                         carForEdit.Engine = ScanerManager.ReadDouble("Maşının mühərrikini dəyiş:  ");
-.
-
-                    //pMgr.Edit(productForEdit);
-
-                    //foreach (var item in pMgr)
-                    //{
-                    //    Console.WriteLine(item);
-                    //}
+                                       
                     carMgr.Edit(carForEdit);
 
                     foreach (var item in carMgr.GetAll())
@@ -67,7 +62,7 @@ namespace CarSystem
                     Console.Clear();
                     ShowAllCars(carMgr);
                     int id = ScanerManager.ReadInteger("Silmək istədiyiniz maşının İD-ni daxil edin: ");
-                    Car c1 = carMgr.GetAll().FirstOrDefault(g => g.Id == id);
+                    Car c1 = carMgr.GetAll().FirstOrDefault(c1 => c1.Id == id);
                     carMgr.Remove(c1);
                     goto case Menu.CarsAll;
 
@@ -76,9 +71,10 @@ namespace CarSystem
                     Console.Clear();
                     ShowAllCars(carMgr);
                     int idForSingle = ScanerManager.ReadInteger("Ətraflı baxmaq istədiyiniz maşının İD-si:  ");
-                    Car cSingle = carMgr.GetAll().FirstOrDefault(g => g.Id == idForSingle);
-                    carMgr.Remove(cSingle);
+                    Car cSingle = carMgr.GetAll().FirstOrDefault(cSingle => cSingle.Id == idForSingle);
+                  
                     Console.WriteLine($"-----------------------\n" +
+                        $"Marka İD-si: {cSingle.ModelId}\n" +
                         $"Rəng: {cSingle.Color}\n" +
                         $"Qiymət: {cSingle.Price}\n" +
                         $"Mühərrik: {cSingle.Engine}\n" +
@@ -102,40 +98,45 @@ namespace CarSystem
                     Console.Clear();
                     Brand b = new Brand();
                     b.Name = ScanerManager.ReadString("Maşının marka adı: ");
-                    
-
+                                        
                     Console.WriteLine("------------");
-                    ShowAllCars(carMgr);
-                    Console.WriteLine("------------");
-
-                   // b.Id = ScanerManager.ReadInteger("Telebenin Grupu: ");
+                    ShowAllBrands(brandMgr);
+                    Console.WriteLine("------------");                   
 
                     brandMgr.Add(b);
                     goto case Menu.BrandsAll;
 
                 case Menu.BrandEdit:
-                    break;
+                    int idg = ScanerManager.ReadInteger("Redaktə etmək istədiyiniz markanın İD-ni daxil edin: ");
+                    Brand edit2 = brandMgr.GetAll().FirstOrDefault(g => g.Id == idg);
+                    edit2.Name = ScanerManager.ReadString("Markanın adını dəyiş:  ");
+                    brandMgr.Edit(edit2);
+
+                    foreach (var item in brandMgr.GetAll())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    goto case Menu.BrandsAll;
                 case Menu.BrandRemove:
                     Console.Clear();
                     ShowAllBrands(brandMgr);
                     int bİd = ScanerManager.ReadInteger("Silmək istədiyiniz brandın İD-ni daxil edin: ");
-                    Brand b1 =brandMgr.GetAll().FirstOrDefault(g => g.Id == bİd);
+                    Brand b1 =brandMgr.GetAll().FirstOrDefault(b1 => b1.Id == bİd);
                     brandMgr.Remove(b1);
-                    goto case Menu.CarsAll;
+                    goto case Menu.BrandsAll;
 
                 case Menu.BrandSingle:
                     Console.Clear();
                     ShowAllBrands(brandMgr);
                     int idForSingleBrand = ScanerManager.ReadInteger("Ətraflı baxmaq istədiyiniz markanın İD-si:  ");
-                    Brand bSingle = brandMgr.GetAll().FirstOrDefault(g => g.Id == idForSingleBrand);
-                    brandMgr.Remove(bSingle);
+                    Brand bSingle = brandMgr.GetAll().FirstOrDefault(bSingle => bSingle.Id == idForSingleBrand);
                     Console.WriteLine($"-----------------------\n" +
                         $"Marka adı: {bSingle.Name}\n");
                         
 
-                    foreach (var item in carMgr.GetAll())
+                    foreach (var item in modelMgr.GetAll())
                     {
-                        if (item.ModelId == bSingle.Id)
+                        if (item.BrandId == bSingle.Id)
                             Console.WriteLine(item);
                     }
                     Console.WriteLine("-----------------------");
@@ -150,27 +151,40 @@ namespace CarSystem
                     Console.Clear();
                     Model mm = new Model();
                    mm.Name = ScanerManager.ReadString("Maşının modelini daxil edin: ");
-                    
+                    Console.WriteLine("---------");
+                    ShowAllBrands(brandMgr);
+                    Console.WriteLine("---------");
+                    mm.BrandId = ScanerManager.ReadInteger("Modelin ID-ni daxil edin: ");
                     modelMgr.Add(mm);
 
-                    goto case Menu.CarsAll;
+                    goto case Menu.ModelsAll;
                 case Menu.ModelEdit:
-                    break;
+                    int idm = ScanerManager.ReadInteger("Redaktə etmək istədiyiniz modelin İD-ni daxil edin: ");
+                    Model edit1 = modelMgr.GetAll().FirstOrDefault(g => g.Id == idm);
+                    edit1.Name = ScanerManager.ReadString("Modeli dəyiş:  ");
+                    modelMgr.Edit(edit1);
+
+                    foreach (var item in modelMgr.GetAll())
+                    {
+                        Console.WriteLine(item);
+                    }
+                    goto case Menu.ModelsAll;
                 case Menu.ModelRemove:
                     Console.Clear();
                     ShowAllModels(modelMgr);
                     int mId = ScanerManager.ReadInteger("Silmək istədiyiniz modelin İD-ni daxil edin: ");
-                  Model m1 = modelMgr.GetAll().FirstOrDefault(g => g.Id == mId);
+                  Model m1 = modelMgr.GetAll().FirstOrDefault(m1 => m1.Id == mId);
                    modelMgr.Remove(m1);
-                    goto case Menu.CarsAll;
+                    goto case Menu.ModelsAll;
                 case Menu.ModelSingle:
                     Console.Clear();
                     ShowAllModels(modelMgr);
                     int idForSingleModel = ScanerManager.ReadInteger("Ətraflı baxmaq istədiyiniz modelin İD-si:  ");
-                    Model mSingle = modelMgr.GetAll().FirstOrDefault(g => g.Id == idForSingleModel);
-                    modelMgr.Remove(mSingle);
+                    Model mSingle = modelMgr.GetAll().FirstOrDefault(mSingle => mSingle.Id == idForSingleModel);
+                    
                     Console.WriteLine($"-----------------------\n" +
-                        $"Marka adı: {mSingle.Name}\n");
+                        $"Marka adı: {mSingle.Name}\n"+
+                        $"Marka ID-si: {mSingle.BrandId}\n");
 
 
                     foreach (var item in carMgr.GetAll())
